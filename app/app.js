@@ -1,1 +1,0 @@
-var ptCalc = angular.module('PT-Calculator', []);
