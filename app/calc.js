@@ -15,6 +15,23 @@ ptCalc.value('CalcDefaults', {
   compressionRate: 0.4
 });
 
+ptCalc.service('storageDataService', function(CalcDefaults) {
+  return {
+    compressData: function(storage) {
+      return Math.ceil(storage * CalcDefaults.compressionRate);
+    },
+
+    getAnnualGrowth: function(yrChange) {
+      return 1 + yrChange;
+    },
+
+    getDelta: function(storage, yrChange, dlChange) {
+      var compressedData = this.compressData(storage);
+      return Math.ceil(compressedData * this.getAnnualGrowth(yrChange) * dlChange);
+    }
+  };
+});
+
 ptCalc.controller('PtCalcCtrl', function($scope) {
   $scope.outsourced = {
     status: "Outsourced"
