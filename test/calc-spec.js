@@ -1,16 +1,12 @@
-describe("PtCalcCtrl", function() {
-  
-  var $rootScope, $scope, ctrl, defaults, storageService;
+describe("CalcDefaults", function() {
+
+  var defaults;
 
   beforeEach(function() {
     module('PT-Calculator');
 
     inject(function($injector) {
-      $rootScope = $injector.get('$rootScope');
-      $scope = $rootScope.$new();
-      ctrl = $injector.get('$controller')("PtCalcCtrl", {$scope: $scope});
       defaults = $injector.get('CalcDefaults');
-      storageService = $injector.get('storageDataService');
     });
   });
 
@@ -52,6 +48,22 @@ describe("PtCalcCtrl", function() {
       expect(defaults.compressionRate).toEqual(0.4);
     });
 
+  });
+});
+
+
+describe("PtCalcCtrl", function() {
+  
+  var $rootScope, $scope, ctrl;
+
+  beforeEach(function() {
+    module('PT-Calculator');
+
+    inject(function($injector) {
+      $rootScope = $injector.get('$rootScope');
+      $scope = $rootScope.$new();
+      ctrl = $injector.get('$controller')("PtCalcCtrl", {$scope: $scope});
+    });
   });
 
   describe("Initialization", function() {
